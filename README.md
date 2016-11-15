@@ -1,4 +1,4 @@
 # ios-suzhou-bus
 
 ```
-the vesion of suzhou time bus 
+the version of suzhou time bus 
