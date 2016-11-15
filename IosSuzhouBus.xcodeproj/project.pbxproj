@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C304929C1DDAB42A0057B095 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = C30492991DDAB42A0057B095 /* 1.png */; };
+		C304929D1DDAB42A0057B095 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = C304929A1DDAB42A0057B095 /* 2.png */; };
+		C304929E1DDAB42A0057B095 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = C304929B1DDAB42A0057B095 /* 3.png */; };
 		C333D0751D8E70D300089416 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C333D0741D8E70D300089416 /* main.m */; };
 		C333D0781D8E70D300089416 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C333D0771D8E70D300089416 /* AppDelegate.m */; };
 		C333D07B1D8E70D300089416 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C333D07A1D8E70D300089416 /* ViewController.m */; };
@@ -43,6 +46,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C30492991DDAB42A0057B095 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		C304929A1DDAB42A0057B095 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		C304929B1DDAB42A0057B095 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
 		C333D0701D8E70D300089416 /* IosSuzhouBus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IosSuzhouBus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C333D0741D8E70D300089416 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C333D0761D8E70D300089416 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -119,6 +125,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C30492981DDAB3E40057B095 /* shot */ = {
+			isa = PBXGroup;
+			children = (
+				C30492991DDAB42A0057B095 /* 1.png */,
+				C304929A1DDAB42A0057B095 /* 2.png */,
+				C304929B1DDAB42A0057B095 /* 3.png */,
+			);
+			name = shot;
+			sourceTree = "<group>";
+		};
 		C333D0671D8E70D300089416 = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +156,7 @@
 		C333D0721D8E70D300089416 /* IosSuzhouBus */ = {
 			isa = PBXGroup;
 			children = (
+				C30492981DDAB3E40057B095 /* shot */,
 				C38936C21DD4587900FA540E /* DBModel */,
 				C38936BA1DD4586700FA540E /* GKDatabase */,
 				C38936AF1DD3207400FA540E /* photo */,
@@ -344,7 +361,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C304929E1DDAB42A0057B095 /* 3.png in Resources */,
+				C304929C1DDAB42A0057B095 /* 1.png in Resources */,
 				C333D0831D8E70D300089416 /* LaunchScreen.storyboard in Resources */,
+				C304929D1DDAB42A0057B095 /* 2.png in Resources */,
 				C38936B91DD3210C00FA540E /* transfer_detail_line.png in Resources */,
 				C38936B51DD3210C00FA540E /* AppIcon.png in Resources */,
 				C333D0801D8E70D300089416 /* Assets.xcassets in Resources */,
