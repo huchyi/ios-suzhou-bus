@@ -184,6 +184,8 @@
     tableView.dataSource = self;
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableView.tableFooterView = [[UIView alloc] init];
+    tableView.allowsSelectionDuringEditing=YES;
+    
     
     UILongPressGestureRecognizer * longPressGr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressToDo:)];
     longPressGr.minimumPressDuration = 1.0;
@@ -192,6 +194,7 @@
     
     [self.view addSubview:tableView];
     self.yourTableView = tableView;
+    
 }
 
 
@@ -251,10 +254,11 @@
 }
 
 ///移动cell的item
+
 //先把默认的删除的图标去掉
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView
            editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return UITableViewCellEditingStyleInsert;
+    return UITableViewCellEditingStyleNone;
 }
 
 //返回当前Cell是否可以移动
@@ -272,6 +276,13 @@ sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
     
     [self.list removeObjectAtIndex:fromRow];
     [self.list insertObject:object atIndex:toRow];
+    
+    //清空表格
+    [self clearTable];
+    //重新插入
+    for (NSDictionary *rowDict in self.list) {
+        [self insertData:rowDict[@"LName"]:rowDict[@"LDirection"]:rowDict[@"Guid"]];
+    }
 }
 
 
@@ -287,6 +298,7 @@ sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
         cell = [[UITableViewCell alloc]
                 initWithStyle:UITableViewCellStyleSubtitle
                 reuseIdentifier:TableSampleIdentifier];
+
     }
     
     NSUInteger row = [indexPath row];
@@ -299,10 +311,14 @@ sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
     cell.detailTextLabel.text = rowDict[@"LDirection"];
     cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
     cell.detailTextLabel.textColor = [UIColor grayColor];
+    
     return cell;
 }
 
+
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     NSDictionary *rowDict = [self.list objectAtIndex:[indexPath row]];
     NSString *guidStr = rowDict[@"Guid"];
     textField.text = @"";
@@ -363,6 +379,7 @@ sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
                 NSDictionary *dict2 = dict[@"data"];
                 self.list = dict2[@"list"];
                 [self.yourTableView reloadData];
+                [_yourTableView setEditing:NO animated:YES];
                 isCanDelete = FALSE;
             }else{
                 [self alertView:@"暂无数据" ];
@@ -416,7 +433,6 @@ sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
     if(array && [array count] >0){
         NSString *string = @"{\"list\":[";
         for (int i = 0; i < [array count]; i++) {
-            NSLog(@"LName:%@",[array[i] valueForKey:@"LName"]);
             
             string = [NSString stringWithFormat:@"%@{\"%@\":\"%@\",\"%@\":\"%@\",\"%@\":\"%@\"},",
                       string,
@@ -431,9 +447,11 @@ sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
         self.list = dic[@"list"];
         [self.yourTableView reloadData];
         isCanDelete = TRUE;
+        [_yourTableView setEditing:YES animated:YES];
     }else{
         self.list = nil;
         [self.yourTableView reloadData];
+        [_yourTableView setEditing:YES animated:YES];
     }
     
     
@@ -482,6 +500,14 @@ sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
         NSLog(@"单条件查询%@",obj.Guid);
     }];
     return resultArr;
+}
+
+
+/// 清空表格
+- (void)clearTable{
+    if ([[GKDatabaseManager sharedManager] clearTableWithName:[Car class]]) {
+        NSLog(@"清空表格成功");
+    }
 }
 
 /// 指定条件删除
